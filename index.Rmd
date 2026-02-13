@@ -2,7 +2,7 @@
 title: "PS270 Final Project"
 author: "Lalitha Viswanathan"
 description: "My final project"
-output:
+output:    
   distill::distill_article:
     self_contained: false
 ---
