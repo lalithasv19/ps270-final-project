@@ -18,6 +18,7 @@ library(tidyverse)
 migrant_data <- read_csv("data/FOTM2-Table 1.csv")
 
 head(migrant_data)
+
 ```
 
 
