@@ -17,7 +17,6 @@ I am interested in exploring data related to Super Bowl ads, 2015 Women's World 
 library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 head(judicial_data)
-
 ```
 
 ## Proposal
