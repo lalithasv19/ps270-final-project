@@ -3,7 +3,7 @@ title: "PS270 Final Project"
 author: "Lalitha Viswanathan"
 description: "My final project"
 output:    
-  distill::distill_article:
+  distill::distill_article: 
     self_contained: false
 ---
 
@@ -18,7 +18,6 @@ library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 
 head(judicial_data)
-
 
 ```
 
