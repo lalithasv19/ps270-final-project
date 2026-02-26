@@ -11,7 +11,7 @@ output:
 
 ## Project thoughts
  
-I am interested in exploring data related to Super Bowl ads, 2015 Women's World Cup predictions, and regional studies of the US. I was looking through the different types of data available on FiveThirtyEight, and they had really interesting data sets available. I would love to follow the one about women's soccer as a former soccer player, but also regional studies. There was one that caught my eye about regional differences around the U.S. for Thanksgiving, and that sounded really cool. I'm from New Jersey, and I love getting to talk to people from around the country about the differences between things that we each find normal. 
+I am interested in exploring data related to Super Bowl ads, 2015 Women's World Cup predictions, and regional studies of the US. I was looking through the different types of data available on FiveThirtyEight, and they had really interesting data sets available. I would love to follow the one about women's soccer as a former soccer player, but also regional studies. There was one that caught my eye about regional differences around the U.S. for Thanksgiving, and that sounded really cool. I'm from New Jersey, and I love getting to talk to people from around the country about the differences between things that we each find normal
 
 ```{r}
 library(tidyverse)
