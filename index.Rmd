@@ -17,6 +17,7 @@ I am interested in exploring data related to Super Bowl ads, 2015 Women's World 
 library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 head(judicial_data)
+
 ```
 
 ## Proposal
@@ -31,5 +32,5 @@ The outcome variable of interest is the Human Rights Index and this is how it wa
 
 Each of the descriptions of the methodology that the researchers used are taken from this website: https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf
 
-The observed pattern in the data that would provide support for my hypothesis would be that when the ethnolinguistic diversity goes up, the Human Rights Index goes down, meaning that when there's more diversity, there are more human rights abuses. One observed pattern that would disprove my hypothesis would be countries being extremely homogeneous, meaning they have a low ethnolinguistic fractionalization score, and also having a low human rights index score.
+The observed pattern in the data that would provide support for my hypothesis would be that when the ethnolinguistic fractionalization goes up (more diversity), the Human Rights Index goes down, meaning that when there's more diversity, there are more human rights abuses. One observed pattern that would disprove my hypothesis would be countries being extremely homogeneous, meaning they have a low ethnolinguistic fractionalization score, and also having a low human rights index score.
 
