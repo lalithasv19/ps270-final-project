@@ -1582,6 +1582,36 @@ The outcome variable of interest is the Human Rights Index and this is how it wa
 <!--/radix_placeholder_article_footer-->
 </div>
 
+<h2 id="Filtering the data to make one visualization just about the Americas">Filtering the data to make one visualization just about the Americas</h2>
+
+## Filtering the data to make one visualization just about the Americas
+
+```{r}
+judicial_data_america <- judicial_data %>% 
+  filter(c_amer == 1 | n_amer == 1 | s_amer == 1) %>% 
+  mutate(am_region = case_when(
+    c_amer == 1 ~ "Central America", 
+    n_amer == 1 ~ "North America", 
+    s_amer == 1 ~ "South America"
+  )) %>% 
+  select(-europe, -asia, -africa, -meast, -america, -aurasia)
+```
+
+```{r}
+judicial_data_america %>% 
+  ggplot(aes(x = countryn, y = pright)) +
+  geom_col() +
+  facet_wrap(~ am_region) +
+  labs(
+    x = "American Region",
+    y = "Index of political rights in 1996", 
+    title = "Political Rights Index in the Americas (1996)",
+    subtitle = "Higher ratings indicate countries come closer to ideals",
+    fill = "Country Name"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
 <div class="d-appendix">
 </div>
 
