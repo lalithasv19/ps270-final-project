@@ -45,20 +45,51 @@ judicial_data_america <- judicial_data %>%
     s_amer == 1 ~ "South America"
   )) %>% 
   select(-europe, -asia, -africa, -meast, -america, -aurasia)
+
+library(forcats) 
+
+judicial_data_america <- judicial_data_america %>%
+  arrange(am_region, countryn) %>%
+  mutate(countryn = fct_inorder(countryn)) 
+
+library(ggrepel)
+
 ```
+
+```{r, eval = FALSE}
+judicial_data_meast <- judicial_data %>% 
+  filter(meast == 1) %>% 
+  mutate(Region = case_when(
+    meast == 1 ~ "Middle East")) %>% 
+  select(-europe, -asia, -africa, -america, -aurasia, -oceania, -c_amer, -s_amer, -n_amer)
+```
+
+
+## Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)
 
 ```{r}
 judicial_data_america %>% 
-  ggplot(aes(x = countryn, y = pright)) +
-  geom_col() +
+  ggplot(aes(x = rigid, y = pright, color = countryn)) +
+  geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.5) + 
+  geom_text_repel(aes(label = countryn), size = 3, show.legend = FALSE, color = "black") + 
   facet_wrap(~ am_region) +
   labs(
-    x = "American Region",
+    x = "Rigidity of Constitution",
     y = "Index of political rights in 1996", 
-    title = "Political Rights Index in the Americas (1996)",
-    subtitle = "Higher ratings indicate countries come closer to ideals",
-    fill = "Country Name"
-  ) +
+    title = "Political Rights Index and Relationship to Rigidity of\nConstitutions in American Countries (1996)",
+    subtitle = "Higher ratings for rigidity of consitution indicate its more difficult to change\nHigher ratings of political rights indicate countries come closer to ideals",
+    color = "Country Name", 
+    caption = "Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"
+  ) +  scale_color_viridis_d(option = "plasma") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+This visualization shows that in South America, there is a clear positive correlation (upward-sloping line). Countries like Chile and Ecuador, which have more rigid constitutions (closer to 3.0), also enjoy higher levels of political rights. This supports the theory that making a constitution difficult to change can help "lock in" democratic protections and prevent sudden authoritarian overthrows.
+
+In Central America, the relationship is the opposite or inconsistent. Haiti has the highest rigidity score (4.0) in the entire dataset, yet its political rights score is quite low (3.0). Cuba has a lower rigidity score but the lowest possible rights score. Interpretation: In this region, a "rigid" constitution doesn't necessarily protect people. Sometimes, authoritarian regimes create rigid constitutions not to protect rights, but to make it harder for reformers to change the system.
+
+Canada and the USA represent the "ideal" model in this study: high constitutional rigidity coupled with the highest possible political rights. However, Mexico serves as a reminder that rigidity (3.0) does not automatically grant high rights (4.0), as it lagged behind its northern neighbors in 1996.
+
+The data suggests that Constitutional Rigidity is not a "magic bullet" for democracy. In "stable regions" (South America), rigidity appears to act as a shield that protects political rights. In unstable or authoritarian regions (Central America/Caribbean), high rigidity may simply be a rule on paper that fails to protect citizens in practice, or even a tool used by those in power to prevent change.
+
+Key Observation: The most "rigid" country in the set (Haiti) is far less democratic than countries with "easier to change" constitutions like Panama or Argentina. This suggests that the content of the laws and the culture of the country matter more than just how hard the document is to edit.

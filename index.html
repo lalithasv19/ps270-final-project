@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/data.csv","data/FOTM2-Table 1.csv","data/FOTM2-Table 1.textClipping","data/Incoming and Outgoing Migrant Counts.csv","Incoming and Outgoing Migrant Counts.numbers","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/data.csv","data/FOTM2-Table 1.csv","data/FOTM2-Table 1.textClipping","data/Incoming and Outgoing Migrant Counts.csv","Incoming and Outgoing Migrant Counts.numbers","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1574,43 +1574,68 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Research question I want to know: Are countries with high ethnolinguistic fractionalization (diversity) more likely to have low human rights indexes?
 Hypothesis: I hypothesize that countries with very low ethnolinguistic fractionalization are more likely to have higher human rights indexes, and that countries with medium and high ethnolinguistic fractionalization would have low human rights indexes. For societies with low diversity, I think there would be less human rights abuses because the society is homogeneous. On the alternative, I think that heterogeneous countries, having two or more ethnolinguistic groups, would be more likely to have more human rights abuses because groups could be turned against each other, and in some countries, the majority group would inflict pain or abuses on the minority groups that do not have much power.</p>
 <p>The explanatory variable is the ethnolinguistic fractionalization. This is the method the researchers used to track it: “Average value of five different indices of ethnolinguistic fractionalization. Its value ranges from 0 to 1. The five component indices are: (1) index of ethnolinguistic fractionalization in 1960, which measures the probability that two randomly selected people from a given country will not belong to the same ethnolinguistic group (the index is based on the number and size of population groups as distinguished by their ethnic and linguistic status); (2) and (3) probability of two randomly selected individuals speaking different languages; (4) percent of the population not speaking the official language; and (5) percent of the population not speaking the most widely used language. Sources: Easterly and Levine (1997).”
-The outcome variable of interest is the Human Rights Index and this is how it was measured: “A measure of 37 criteria based on the rights enumerated in the three major UN treaties: 1948 Universal Declaration of Human Rights, 1996 International Covenant on Civil and Political Rights, International Covenant on Economics, Social, and Cultural Rights. Ranges from 17 to 99 in the sample, with higher scores indicating better human rights. Source: Humana (1992).”</p>
+The outcome variable of interest is the Human Rights Index and this is how it was measured: “A measure of 37 criteria based on the rights enumerated in the three major UN treaties: 1948 Universal Declaration of Human Rights, 1996 International Creovenant on Civil and Political Rights, International Covenant on Economics, Social, and Cultural Rights. Ranges from 17 to 99 in the sample, with higher scores indicating better human rights. Source: Humana (1992).”</p>
 <p>Each of the descriptions of the methodology that the researchers used are taken from this website: <a href="https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf" class="uri">https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf</a></p>
 <p>The observed pattern in the data that would provide support for my hypothesis would be that when the ethnolinguistic fractionalization goes up (more diversity), the Human Rights Index goes down, meaning that when there’s more diversity, there are more human rights abuses. One observed pattern that would disprove my hypothesis would be countries being extremely homogeneous, meaning they have a low ethnolinguistic fractionalization score, and also having a low human rights index score.</p>
+<h2 id="filtering-the-data-to-make-one-visualization-just-about-the-americas">Filtering the data to make one visualization just about the Americas</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>c_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>n_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>s_amer</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>am_region <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>c_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Central America"</span>, </span>
+<span>    <span class='va'>n_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"North America"</span>, </span>
+<span>    <span class='va'>s_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"South America"</span></span>
+<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>europe</span>, <span class='op'>-</span><span class='va'>asia</span>, <span class='op'>-</span><span class='va'>africa</span>, <span class='op'>-</span><span class='va'>meast</span>, <span class='op'>-</span><span class='va'>america</span>, <span class='op'>-</span><span class='va'>aurasia</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://forcats.tidyverse.org/'>forcats</a></span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>am_region</span>, <span class='va'>countryn</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>countryn <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_inorder.html'>fct_inorder</a></span><span class='op'>(</span><span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggrepel.slowkow.com/'>ggrepel</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_meast</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>meast</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Region <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>    <span class='va'>meast</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Middle East"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>europe</span>, <span class='op'>-</span><span class='va'>asia</span>, <span class='op'>-</span><span class='va'>africa</span>, <span class='op'>-</span><span class='va'>america</span>, <span class='op'>-</span><span class='va'>aurasia</span>, <span class='op'>-</span><span class='va'>oceania</span>, <span class='op'>-</span><span class='va'>c_amer</span>, <span class='op'>-</span><span class='va'>s_amer</span>, <span class='op'>-</span><span class='va'>n_amer</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h2 id="visualization-displaying-the-political-rights-index-of-countries-throughout-the-americas-separated-by-region-north-central-south">Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span>, color <span class='op'>=</span> <span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggrepel.slowkow.com/reference/geom_text_repel.html'>geom_text_repel</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>countryn</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>3</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>am_region</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Rigidity of Constitution"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Index of political rights in 1996"</span>, </span>
+<span>    title <span class='op'>=</span> <span class='st'>"Political Rights Index and Relationship to Rigidity of\nConstitutions in American Countries (1996)"</span>,</span>
+<span>    subtitle <span class='op'>=</span> <span class='st'>"Higher ratings for rigidity of consitution indicate its more difficult to change\nHigher ratings of political rights indicate countries come closer to ideals"</span>,</span>
+<span>    color <span class='op'>=</span> <span class='st'>"Country Name"</span>, </span>
+<span>    caption <span class='op'>=</span> <span class='st'>"Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_color_viridis_d</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"plasma"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>45</span>, hjust <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" alt="" width="624" /></p>
+</div>
+<p>This visualization shows that in South America, there is a clear positive correlation (upward-sloping line). Countries like Chile and Ecuador, which have more rigid constitutions (closer to 3.0), also enjoy higher levels of political rights. This supports the theory that making a constitution difficult to change can help “lock in” democratic protections and prevent sudden authoritarian overthrows.</p>
+<p>In Central America, the relationship is the opposite or inconsistent. Haiti has the highest rigidity score (4.0) in the entire dataset, yet its political rights score is quite low (3.0). Cuba has a lower rigidity score but the lowest possible rights score. Interpretation: In this region, a “rigid” constitution doesn’t necessarily protect people. Sometimes, authoritarian regimes create rigid constitutions not to protect rights, but to make it harder for reformers to change the system.</p>
+<p>Canada and the USA represent the “ideal” model in this study: high constitutional rigidity coupled with the highest possible political rights. However, Mexico serves as a reminder that rigidity (3.0) does not automatically grant high rights (4.0), as it lagged behind its northern neighbors in 1996.</p>
+<p>The data suggests that Constitutional Rigidity is not a “magic bullet” for democracy. In “stable regions” (South America), rigidity appears to act as a shield that protects political rights. In unstable or authoritarian regions (Central America/Caribbean), high rigidity may simply be a rule on paper that fails to protect citizens in practice, or even a tool used by those in power to prevent change.</p>
+<p>Key Observation: The most “rigid” country in the set (Haiti) is far less democratic than countries with “easier to change” constitutions like Panama or Argentina. This suggests that the content of the laws and the culture of the country matter more than just how hard the document is to edit.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
-
-<h2 id="Filtering the data to make one visualization just about the Americas">Filtering the data to make one visualization just about the Americas</h2>
-
-## Filtering the data to make one visualization just about the Americas
-
-```{r}
-judicial_data_america <- judicial_data %>% 
-  filter(c_amer == 1 | n_amer == 1 | s_amer == 1) %>% 
-  mutate(am_region = case_when(
-    c_amer == 1 ~ "Central America", 
-    n_amer == 1 ~ "North America", 
-    s_amer == 1 ~ "South America"
-  )) %>% 
-  select(-europe, -asia, -africa, -meast, -america, -aurasia)
-```
-
-```{r}
-judicial_data_america %>% 
-  ggplot(aes(x = countryn, y = pright)) +
-  geom_col() +
-  facet_wrap(~ am_region) +
-  labs(
-    x = "American Region",
-    y = "Index of political rights in 1996", 
-    title = "Political Rights Index in the Americas (1996)",
-    subtitle = "Higher ratings indicate countries come closer to ideals",
-    fill = "Country Name"
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-```
 
 <div class="d-appendix">
 </div>
