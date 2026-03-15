@@ -1568,6 +1568,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 #   humana_9 &lt;dbl&gt;, proc_99 &lt;dbl&gt;, index_labor1 &lt;dbl&gt;, gb_per &lt;dbl&gt;,
 #   new_constitutional &lt;dbl&gt;, new_independence &lt;dbl&gt;, europe &lt;dbl&gt;,
 #   asia &lt;dbl&gt;, africa &lt;dbl&gt;, c_amer &lt;dbl&gt;, s_amer &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://forcats.tidyverse.org/'>forcats</a></span><span class='op'>)</span> </span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggrepel.slowkow.com/'>ggrepel</a></span><span class='op'>)</span></span></code></pre>
+</div>
 </div>
 <h2 id="proposal">Proposal</h2>
 <p>This research is from the Tuck School at Dartmouth, a paper entitled, “Judicial Checks and Balances,” published in 2004.</p>
@@ -1589,13 +1593,9 @@ The outcome variable of interest is the Human Rights Index and this is how it wa
 <span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>europe</span>, <span class='op'>-</span><span class='va'>asia</span>, <span class='op'>-</span><span class='va'>africa</span>, <span class='op'>-</span><span class='va'>meast</span>, <span class='op'>-</span><span class='va'>america</span>, <span class='op'>-</span><span class='va'>aurasia</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://forcats.tidyverse.org/'>forcats</a></span><span class='op'>)</span> </span>
-<span></span>
 <span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>am_region</span>, <span class='va'>countryn</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>countryn <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_inorder.html'>fct_inorder</a></span><span class='op'>(</span><span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> </span>
-<span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggrepel.slowkow.com/'>ggrepel</a></span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>countryn <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_inorder.html'>fct_inorder</a></span><span class='op'>(</span><span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">

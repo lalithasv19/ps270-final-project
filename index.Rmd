@@ -18,6 +18,8 @@ library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 head(judicial_data)
 
+library(forcats) 
+library(ggrepel)
 ```
 
 ## Proposal
@@ -46,13 +48,9 @@ judicial_data_america <- judicial_data %>%
   )) %>% 
   select(-europe, -asia, -africa, -meast, -america, -aurasia)
 
-library(forcats) 
-
 judicial_data_america <- judicial_data_america %>%
   arrange(am_region, countryn) %>%
   mutate(countryn = fct_inorder(countryn)) 
-
-library(ggrepel)
 
 ```
 
