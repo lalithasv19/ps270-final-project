@@ -68,7 +68,7 @@ judicial_data_meast <- judicial_data %>%
 ## Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)
 
 ```{r}
-judicial_data_america %>% 
+visualization <- judicial_data_america %>% 
   ggplot(aes(x = rigid, y = pright, color = countryn)) +
   geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.5) + 
   geom_text_repel(aes(label = countryn), size = 3, show.legend = FALSE, color = "black") + 
@@ -82,6 +82,8 @@ judicial_data_america %>%
     caption = "Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"
   ) +  scale_color_viridis_d(option = "plasma") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+visualization
 ```
 
 This visualization shows that in South America, there is a clear positive correlation (upward-sloping line). Countries like Chile and Ecuador, which have more rigid constitutions (closer to 3.0), also enjoy higher levels of political rights. This supports the theory that making a constitution difficult to change can help "lock in" democratic protections and prevent sudden authoritarian overthrows.
