@@ -13,7 +13,7 @@ output:
  
 I am interested in exploring data related to Super Bowl ads, 2015 Women's World Cup predictions, and regional studies of the US. I was looking through the different types of data available on FiveThirtyEight, and they had really interesting data sets available. I would love to follow the one about women's soccer as a former soccer player, but also regional studies. There was one that caught my eye about regional differences around the U.S. for Thanksgiving, and that sounded really cool. I'm from New Jersey, and I love getting to talk to people from around the country about the differences between things that we each find normal
 
-```{r}
+```{r loading}
 library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 head(judicial_data)
@@ -38,7 +38,7 @@ The observed pattern in the data that would provide support for my hypothesis wo
 
 ## Filtering the data to make one visualization just about the Americas
 
-```{r}
+```{r americas}
 judicial_data_america <- judicial_data %>% 
   filter(c_amer == 1 | n_amer == 1 | s_amer == 1) %>% 
   mutate(am_region = case_when(
@@ -54,7 +54,7 @@ judicial_data_america <- judicial_data_america %>%
 
 ```
 
-```{r, eval = FALSE}
+```{r middle east}
 judicial_data_meast <- judicial_data %>% 
   filter(meast == 1) %>% 
   mutate(Region = case_when(
@@ -65,7 +65,7 @@ judicial_data_meast <- judicial_data %>%
 
 ## Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)
 
-```{r}
+```{r visualization}
 visualization <- judicial_data_america %>% 
   ggplot(aes(x = rigid, y = pright, color = countryn)) +
   geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.5) + 
