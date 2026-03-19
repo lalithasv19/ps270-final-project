@@ -76,7 +76,8 @@ visualization <- judicial_data_america %>%
     subtitle = "Higher ratings for rigidity of consitution indicate its more difficult to change\nHigher ratings of political rights indicate countries come closer to ideals",
     color = "Country Name", 
     caption = "Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"
-  ) +  scale_color_viridis_d(option = "plasma") 
+  ) +  scale_color_viridis_d(option = "plasma") +
+   theme(legend.position = "none")
 
 visualization
 ```
