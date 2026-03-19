@@ -34,7 +34,7 @@ Each of the descriptions of the methodology that the researchers used are taken 
 
 The observed pattern in the data that would provide support for my hypothesis would be that when the ethnolinguistic fractionalization goes up (more diversity), the Human Rights Index goes down, meaning that when there's more diversity, there are more human rights abuses. One observed pattern that would disprove my hypothesis would be countries being extremely homogeneous, meaning they have a low ethnolinguistic fractionalization score, and also having a low human rights index score.
 
-## Filtering the data to make one visualization just about the Americas
+## Filtering the data to certain regions/continents
 
 ```{r americas}
 judicial_data_america <- judicial_data %>% 
@@ -66,7 +66,7 @@ judicial_data_meast <- judicial_data %>%
 ```{r visualization}
 visualization <- judicial_data_america %>% 
   ggplot(aes(x = rigid, y = pright, color = countryn)) +
-  geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = 1.5) + 
+  geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = .75) + 
   geom_text_repel(aes(label = countryn), size = 3, show.legend = FALSE, color = "black") + 
   facet_wrap(~ am_region) +
   labs(
@@ -76,8 +76,7 @@ visualization <- judicial_data_america %>%
     subtitle = "Higher ratings for rigidity of consitution indicate its more difficult to change\nHigher ratings of political rights indicate countries come closer to ideals",
     color = "Country Name", 
     caption = "Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"
-  ) +  scale_color_viridis_d(option = "plasma") + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  ) +  scale_color_viridis_d(option = "plasma") 
 
 visualization
 ```
