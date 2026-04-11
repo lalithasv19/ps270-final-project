@@ -98,7 +98,7 @@ Key Observation: The most "rigid" country in the set (Haiti) is far less democra
 
 Guiding Question: Do older, established constitutions protect rights better, or do modern constitutions perform better? 
 
-```{r}
+```{r Table}
 
 library(knitr)
 
