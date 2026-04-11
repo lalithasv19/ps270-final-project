@@ -1639,51 +1639,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>table_data</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span><span class='va'>table_output</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age_group <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&lt;</span> <span class='fl'>1950</span> <span class='op'>~</span> <span class='st'>"Over 45 Years Old"</span>,</span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;=</span> <span class='fl'>1950</span> <span class='op'>&amp;</span> <span class='va'>cons_yr</span> <span class='op'>&lt;</span> <span class='fl'>1985</span> <span class='op'>~</span> <span class='st'>"10–45 Years Old"</span>,</span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;=</span> <span class='fl'>1985</span> <span class='op'>~</span> <span class='st'>"Recent (Under 10 Years)"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>    <span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1951</span> <span class='op'>~</span> <span class='st'>"Over 45 Years"</span>,</span>
+<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;</span> <span class='fl'>1951</span> <span class='op'>&amp;</span> <span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1986</span> <span class='op'>~</span> <span class='st'>"10-45 Years"</span>,</span>
+<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;</span> <span class='fl'>1986</span> <span class='op'>~</span> <span class='st'>"Under 10 Years"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span></span>
-<span>    `Number of Countries` <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>    `Average Political Rights` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pright</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,</span>
-<span>    `Average Rigidity` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>rigid</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>`Average Political Rights`</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='va'>table_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>age_group</span>, <span class='va'>`Average Political Rights`</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span></span>
+<span>    Count <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>    Avg_Rights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pright</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>age_group</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Over 45 Years"</span>, <span class='st'>"10-45 Years"</span>, <span class='st'>"Under 10 Years"</span>, <span class='st'>"NA/Unknown"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>age_group</span>, <span class='va'>Avg_Rights</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span></span>
 <span>    names_from <span class='op'>=</span> <span class='va'>age_group</span>,</span>
-<span>    values_from <span class='op'>=</span> <span class='va'>`Average Political Rights`</span></span>
+<span>    values_from <span class='op'>=</span> <span class='va'>Avg_Rights</span></span>
 <span>  <span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>table</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, caption <span class='op'>=</span> <span class='st'>"Average Political Rights Score for Constitutions Based on Age Group"</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>table_output</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 3
+  `Over 45 Years` `10-45 Years` `Under 10 Years`
+            &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+1            6.33           3.8             4.12</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>table_output</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, caption <span class='op'>=</span> <span class='st'>"Political Rights Index compared to when countries ratified their constitution"</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<caption><span id="tab:Table">Table 1: </span>Average Political Rights Score for Constitutions Based on Age Group</caption>
+<caption><span id="tab:unnamed-chunk-1">Table 1: </span>Political Rights Index compared to when countries ratified their constitution</caption>
 <thead>
 <tr class="header">
-<th style="text-align: right;">Over 45 Years Old</th>
-<th style="text-align: right;">Recent (Under 10 Years)</th>
-<th style="text-align: right;">10–45 Years Old</th>
+<th style="text-align: right;">Over 45 Years</th>
+<th style="text-align: right;">10-45 Years</th>
+<th style="text-align: right;">Under 10 Years</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">6.47</td>
-<td style="text-align: right;">3.94</td>
-<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">6.33</td>
+<td style="text-align: right;">3.8</td>
+<td style="text-align: right;">4.12</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with ‘legacy’ constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.94) and the 1990s (3.90).</p>
+<p>These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with ‘legacy’ constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.8) and the 1990s (4.12). I used 1996 as the ‘present’ year because the data has the political rights index in 1996, so it is in comparison to that.</p>
 <p>New countries are writing the rules of democracy, but the strength of the institution is not nearly as much as established, democratic powers. The newness of a country’s law is a sign of insecurity.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

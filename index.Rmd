@@ -98,36 +98,35 @@ Key Observation: The most "rigid" country in the set (Haiti) is far less democra
 
 Guiding Question: Do older, established constitutions protect rights better, or do modern constitutions perform better? 
 
-```{r Table}
 
+```{r}
 library(knitr)
 
-table_data <- judicial_data %>%
+table_output <- judicial_data %>% 
   mutate(age_group = case_when(
-    cons_yr < 1950 ~ "Over 45 Years Old",
-    cons_yr >= 1950 & cons_yr < 1985 ~ "10–45 Years Old",
-    cons_yr >= 1985 ~ "Recent (Under 10 Years)"
-  )) %>%
+    cons_yr <= 1951 ~ "Over 45 Years",
+    cons_yr > 1951 & cons_yr <= 1986 ~ "10-45 Years",
+    cons_yr > 1986 ~ "Under 10 Years")) %>%
   group_by(age_group) %>%
-  summarise(
-    `Number of Countries` = n(),
-    `Average Political Rights` = mean(pright, na.rm = TRUE),
-    `Average Rigidity` = mean(rigid, na.rm = TRUE)
-  ) %>%
-  arrange(desc(`Average Political Rights`))
-
-table <- table_data %>% 
   drop_na(age_group) %>% 
-  select(age_group, `Average Political Rights`) %>% 
+  summarise(
+    Count = n(),
+    Avg_Rights = mean(pright, na.rm = TRUE)
+  ) %>%
+  mutate(age_group = factor(age_group, levels = c("Over 45 Years", "10-45 Years", "Under 10 Years", "NA/Unknown"))) %>%
+  arrange(age_group) %>% 
+  select(age_group, Avg_Rights) %>% 
   pivot_wider(
     names_from = age_group,
-    values_from = `Average Political Rights`
+    values_from = Avg_Rights
   )
 
-knitr::kable(table, digits = 2, caption = "Average Political Rights Score for Constitutions Based on Age Group")
+table_output
 
+knitr::kable(table_output, digits = 2, caption = "Political Rights Index compared to when countries ratified their constitution")
 ```
 
-These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with 'legacy' constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.94) and the 1990s (3.90). 
+These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with 'legacy' constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.8) and the 1990s (4.12). I used 1996 as the 'present' year because the data has the political rights index in 1996, so it is in comparison to that. 
 
 New countries are writing the rules of democracy, but the strength of the institution is not nearly as much as established, democratic powers. The newness of a country's law is a sign of insecurity.
+
