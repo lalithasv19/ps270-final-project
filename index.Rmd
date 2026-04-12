@@ -123,7 +123,7 @@ table_output <- judicial_data %>%
 
 table_output
 
-knitr::kable(table_output, digits = 2, caption = "Political Rights Index according to when constitutions were ratified")
+knitr::kable(table_output, digits = 2, caption = "Political Rights Index according to how long ago constitutions were ratified")
 ```
 
 These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with 'legacy' constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.8) and the 1990s (4.12). I used 1996 as the 'present' year because the data has the political rights index in 1996, so it is in comparison to that. 
