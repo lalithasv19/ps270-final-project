@@ -94,39 +94,45 @@ The data suggests that Constitutional Rigidity is not a "magic bullet" for democ
 
 Key Observation: The most "rigid" country in the set (Haiti) is far less democratic than countries with "easier to change" constitutions like Panama or Argentina. This suggests that the content of the laws and the culture of the country matter more than just how hard the document is to edit.
 
-## Assessing a relationship between the year the Constitution was written and the rigidity
+## Assessing a relationship between the year the Constitution was written, its rigidity, and political rights
 
-Guiding Question: Do older, established constitutions protect rights better, or do modern constitutions perform better? 
+Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution?
 
 
 ```{r}
 library(knitr)
-
-table_output <- judicial_data %>% 
-  mutate(age_group = case_when(
-    cons_yr <= 1951 ~ "Over 45 Years",
-    cons_yr > 1951 & cons_yr <= 1986 ~ "10-45 Years",
-    cons_yr > 1986 ~ "Under 10 Years")) %>%
-  group_by(age_group) %>%
-  drop_na(age_group) %>% 
-  summarise(
-    Count = n(),
-    Avg_Rights = mean(pright, na.rm = TRUE)
-  ) %>%
-  mutate(age_group = factor(age_group, levels = c("Over 45 Years", "10-45 Years", "Under 10 Years", "NA/Unknown"))) %>%
-  arrange(age_group) %>% 
-  select(age_group, Avg_Rights) %>% 
-  pivot_wider(
-    names_from = age_group,
-    values_from = Avg_Rights
-  )
-
-table_output
-
-knitr::kable(table_output, digits = 2, caption = "Political Rights Index according to how long ago constitutions were ratified")
 ```
 
-These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with 'legacy' constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.8) and the 1990s (4.12). I used 1996 as the 'present' year because the data has the political rights index in 1996, so it is in comparison to that. 
 
-New countries are writing the rules of democracy, but the strength of the institution is not nearly as much as established, democratic powers. The newness of a country's law is a sign of insecurity.
+```{r new model}
+model <- lm(pright ~ rigid + cons_yr, data = judicial_data_america)
+summary(model)
+```
+Since the `rigid` coefficient is positive, it means more rigidity leads to more rights. Since the `cons_yr` coefficient is negative, it means newer constitutions have fewer rights. 
+For every 1-point increase in the Rigidity of a constitution, the Political Rights index increases by 0.1263 points, holding the year constant. It suggests that making a constitution harder to change has a positive (though relatively small) impact on protecting political rights. For every year later a constitution was written, the Political Rights index decreases by 0.0139 points, holding rigidity constant. A constitution written in 1890 is predicted to have about 1.4 points higher political rights than one written in 1990 (100 x 0.0139), even if they have the exact same rigidity score.
 
+This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To include the Year, there are two colors: old vs. new.
+
+
+```{r}
+judicial_data_america <- judicial_data_america %>%
+  mutate(Age = ifelse(cons_yr <= 1980, "Established (Pre-1980)", "Recent (Post-1980)"))
+
+ggplot(judicial_data_america, aes(x = rigid, y = pright, color = Age)) +
+  geom_jitter(width = 0.2, size = 3) + # Jitter stops dots from overlapping
+  geom_smooth(method = "lm", se = FALSE) + # Adds two simple trend lines
+  labs(
+    title = "Rights by Constitutional Rigidity and Age",
+    x = "Rigidity Score",
+    y = "Political Rights Index",
+    color = "Constitutional Era"
+  ) +
+  theme_minimal()
+```
+I have updated the project to include a formal multiple linear regression analysis. Modeling Political Rights as a function of both Rigidity and Constitution Year reveals two key findings:
+1. Positive Impact of Rigidity: The coefficient for rigidity, 0.1263, suggests that 'locking in' a constitution provides a boost to political rights, acting as a structural shield.
+2.  Negative Impact of Recency: The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments or fail to overcome 'Parchment Barriers' as effectively as older, more established legal frameworks.
+By including both predictors in one model, the analysis shows that while institutional design (rigidity) matters, the historical endurance of the document (year) is a more powerful predictor of democratic outcomes in 1996.
+
+The regression shows that while constitutional rigidity has a positive effect on rights, the year of enactment is a predictor, with older constitutions generally supporting higher rights scores. 
+The scatterplot reflects this model by showing that 'Established' constitutions (blue) tend to sit higher on the Y-axis than 'Recent' ones (red), regardless of their rigidity score. This provides a story between the statistical model and the visual data.

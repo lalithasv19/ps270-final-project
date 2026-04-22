@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/data.csv","data/FOTM2-Table 1.csv","data/FOTM2-Table 1.textClipping","data/Incoming and Outgoing Migrant Counts.csv","Incoming and Outgoing Migrant Counts.numbers","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/visualization-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/data.csv","data/FOTM2-Table 1.csv","data/FOTM2-Table 1.textClipping","data/Incoming and Outgoing Migrant Counts.csv","Incoming and Outgoing Migrant Counts.numbers","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/visualization-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1633,60 +1633,65 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Canada and the USA represent the “ideal” model in this study: high constitutional rigidity coupled with the highest possible political rights. However, Mexico serves as a reminder that rigidity (3.0) does not automatically grant high rights (4.0), as it lagged behind its northern neighbors in 1996.</p>
 <p>The data suggests that Constitutional Rigidity is not a “magic bullet” for democracy. In “stable regions” (South America), rigidity appears to act as a shield that protects political rights. In unstable or authoritarian regions (Central America/Caribbean), high rigidity may simply be a rule on paper that fails to protect citizens in practice, or even a tool used by those in power to prevent change.</p>
 <p>Key Observation: The most “rigid” country in the set (Haiti) is far less democratic than countries with “easier to change” constitutions like Panama or Argentina. This suggests that the content of the laws and the culture of the country matter more than just how hard the document is to edit.</p>
-<h2 id="assessing-a-relationship-between-the-year-the-constitution-was-written-and-the-rigidity">Assessing a relationship between the year the Constitution was written and the rigidity</h2>
-<p>Guiding Question: Do older, established constitutions protect rights better, or do modern constitutions perform better?</p>
+<h2 id="assessing-a-relationship-between-the-year-the-constitution-was-written-its-rigidity-and-political-rights">Assessing a relationship between the year the Constitution was written, its rigidity, and political rights</h2>
+<p>Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>table_output</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age_group <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1951</span> <span class='op'>~</span> <span class='st'>"Over 45 Years"</span>,</span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;</span> <span class='fl'>1951</span> <span class='op'>&amp;</span> <span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1986</span> <span class='op'>~</span> <span class='st'>"10-45 Years"</span>,</span>
-<span>    <span class='va'>cons_yr</span> <span class='op'>&gt;</span> <span class='fl'>1986</span> <span class='op'>~</span> <span class='st'>"Under 10 Years"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span></span>
-<span>    Count <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
-<span>    Avg_Rights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pright</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age_group <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>age_group</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Over 45 Years"</span>, <span class='st'>"10-45 Years"</span>, <span class='st'>"Under 10 Years"</span>, <span class='st'>"NA/Unknown"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>age_group</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>age_group</span>, <span class='va'>Avg_Rights</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span></span>
-<span>    names_from <span class='op'>=</span> <span class='va'>age_group</span>,</span>
-<span>    values_from <span class='op'>=</span> <span class='va'>Avg_Rights</span></span>
-<span>  <span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>table_output</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 × 3
-  `Over 45 Years` `10-45 Years` `Under 10 Years`
-            &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
-1            6.33           3.8             4.12</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>table_output</span>, digits <span class='op'>=</span> <span class='fl'>2</span>, caption <span class='op'>=</span> <span class='st'>"Political Rights Index according to how long ago constitutions were ratified"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pright</span> <span class='op'>~</span> <span class='va'>rigid</span> <span class='op'>+</span> <span class='va'>cons_yr</span>, data <span class='op'>=</span> <span class='va'>judicial_data_america</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span></code></pre>
 </div>
-<table>
-<caption><span id="tab:unnamed-chunk-1">Table 1: </span>Political Rights Index according to how long ago constitutions were ratified</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Over 45 Years</th>
-<th style="text-align: right;">10-45 Years</th>
-<th style="text-align: right;">Under 10 Years</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">6.33</td>
-<td style="text-align: right;">3.8</td>
-<td style="text-align: right;">4.12</td>
-</tr>
-</tbody>
-</table>
+<pre><code>
+Call:
+lm(formula = pright ~ rigid + cons_yr, data = judicial_data_america)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4130 -0.7184 -0.1222  1.2242  1.7538 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept) 31.619804  13.415595   2.357   0.0363 *
+rigid        0.126325   0.655248   0.193   0.8503  
+cons_yr     -0.013896   0.006685  -2.079   0.0598 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.546 on 12 degrees of freedom
+Multiple R-squared:  0.2785,    Adjusted R-squared:  0.1583 
+F-statistic: 2.316 on 2 and 12 DF,  p-value: 0.141</code></pre>
 </div>
-<p>These numbers show that Constitutional Age is a stronger shield for democracy than Constitutional Design. Countries with ‘legacy’ constitutions (pre-1950) maintain a stronger political rights average of 6.47. Conversely, there is almost no difference in rights between constitutions written in the 1960s (3.8) and the 1990s (4.12). I used 1996 as the ‘present’ year because the data has the political rights index in 1996, so it is in comparison to that.</p>
-<p>New countries are writing the rules of democracy, but the strength of the institution is not nearly as much as established, democratic powers. The newness of a country’s law is a sign of insecurity.</p>
+<p>Since the <code>rigid</code> coefficient is positive, it means more rigidity leads to more rights. Since the <code>cons_yr</code> coefficient is negative, it means newer constitutions have fewer rights.
+For every 1-point increase in the Rigidity of a constitution, the Political Rights index increases by 0.1263 points, holding the year constant. It suggests that making a constitution harder to change has a positive (though relatively small) impact on protecting political rights. For every year later a constitution was written, the Political Rights index decreases by 0.0139 points, holding rigidity constant. A constitution written in 1890 is predicted to have about 1.4 points higher political rights than one written in 1990 (100 x 0.0139), even if they have the exact same rigidity score.</p>
+<p>This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To include the Year, there are two colors: old vs. new.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1980</span>, <span class='st'>"Established (Pre-1980)"</span>, <span class='st'>"Recent (Post-1980)"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>judicial_data_america</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span>, color <span class='op'>=</span> <span class='va'>Age</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_jitter.html'>geom_jitter</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.2</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Jitter stops dots from overlapping</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Adds two simple trend lines</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Rights by Constitutional Rigidity and Age"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Rigidity Score"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Political Rights Index"</span>,</span>
+<span>    color <span class='op'>=</span> <span class='st'>"Constitutional Era"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" alt="" width="624" /></p>
+</div>
+<p>I have updated the project to include a formal multiple linear regression analysis. Modeling Political Rights as a function of both Rigidity and Constitution Year reveals two key findings:
+1. Positive Impact of Rigidity: The coefficient for rigidity, 0.1263, suggests that ‘locking in’ a constitution provides a boost to political rights, acting as a structural shield.
+2. Negative Impact of Recency: The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments or fail to overcome ‘Parchment Barriers’ as effectively as older, more established legal frameworks.
+By including both predictors in one model, the analysis shows that while institutional design (rigidity) matters, the historical endurance of the document (year) is a more powerful predictor of democratic outcomes in 1996.</p>
+<p>The regression shows that while constitutional rigidity has a positive effect on rights, the year of enactment is a predictor, with older constitutions generally supporting higher rights scores.
+The scatterplot reflects this model by showing that ‘Established’ constitutions (blue) tend to sit higher on the Y-axis than ‘Recent’ ones (red), regardless of their rigidity score. This provides a story between the statistical model and the visual data.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
