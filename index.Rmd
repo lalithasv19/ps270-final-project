@@ -118,7 +118,7 @@ This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To i
 judicial_data_america <- judicial_data_america %>%
   mutate(Age = ifelse(cons_yr <= 1980, "Established (Pre-1980)", "Recent (Post-1980)"))
 
-ggplot(judicial_data_america, aes(x = rigid, y = pright, color = Age)) +
+regression_plot <- ggplot(judicial_data_america, aes(x = rigid, y = pright, color = Age)) +
   geom_jitter(width = 0.2, size = 3) + # Jitter stops dots from overlapping
   geom_smooth(method = "lm", se = FALSE) + # Adds two simple trend lines
   labs(
@@ -128,6 +128,7 @@ ggplot(judicial_data_america, aes(x = rigid, y = pright, color = Age)) +
     color = "Constitutional Era"
   ) +
   theme_minimal()
+regression_plot
 ```
 I have updated the project to include a formal multiple linear regression analysis. Modeling Political Rights as a function of both Rigidity and Constitution Year reveals two key findings:
 1. Positive Impact of Rigidity: The coefficient for rigidity, 0.1263, suggests that 'locking in' a constitution provides a boost to political rights, acting as a structural shield.
