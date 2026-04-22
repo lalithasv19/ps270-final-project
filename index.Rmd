@@ -114,7 +114,7 @@ For every 1-point increase in the Rigidity of a constitution, the Political Righ
 This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To include the Year, there are two colors: old vs. new.
 
 
-```{r}
+```{r visualization 2}
 judicial_data_america <- judicial_data_america %>%
   mutate(Age = ifelse(cons_yr <= 1980, "Established (Pre-1980)", "Recent (Post-1980)"))
 
