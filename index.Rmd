@@ -26,7 +26,7 @@ This research is from the Tuck School at Dartmouth, a paper entitled, "Judicial 
 
 Research question I want to know: To what extent does the formal design of a constitution determine the quality of political rights?
 
-Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people. 
+Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights in American countries. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people. 
 
 The explanatory variables are the rigidity of the constitution and the constitution year. For rigidity, this is how it was measured: Measures (on a scale from 1 to 4) how hard it is to change the constitution in a given country. One point each is given if the approval of the majority of the legislature, the chief of state, and a referendum is necessary in order to change the constitution. An additional point is given for each of the following: if a supermajority in the legislature (more than 66 percent of votes) is needed, if both houses of the legislature have to approve, if the legislature has to approve the amendment in two consecutive legislative terms, or if the approval of a majority of the state legislature is required. Source: Maddex (1995)." The other explanatory variable is the year that the constitution was ratified. 
 
@@ -96,7 +96,7 @@ Key Observation: The most "rigid" country in the set (Haiti) is far less democra
 
 ## Assessing a relationship between the year the Constitution was written, its rigidity, and political rights
 
-Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution?
+Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution throughout America?
 
 
 ```{r}
@@ -106,6 +106,7 @@ library(knitr)
 
 ```{r new model}
 model <- lm(pright ~ rigid + cons_yr, data = judicial_data_america)
+model
 summary(model)
 ```
 Since the `rigid` coefficient is positive, it means more rigidity leads to more rights. Since the `cons_yr` coefficient is negative, it means newer constitutions have fewer rights. 
@@ -118,9 +119,9 @@ This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To i
 judicial_data_america <- judicial_data_america %>%
   mutate(Age = ifelse(cons_yr <= 1980, "Established (Pre-1980)", "Recent (Post-1980)"))
 
-regression_plot <- ggplot(judicial_data_america, aes(x = rigid, y = pright, color = Age)) +
-  geom_jitter(width = 0.2, size = 3) + # Jitter stops dots from overlapping
-  geom_smooth(method = "lm", se = FALSE) + # Adds two simple trend lines
+regression_plot <- ggplot(judicial_data_america, aes(x = rigid, y = pright)) +
+  geom_point(aes(color = Age)) + 
+  geom_smooth(method = "lm", se = FALSE) + 
   labs(
     title = "Rights by Constitutional Rigidity and Age",
     x = "Rigidity Score",
@@ -129,11 +130,12 @@ regression_plot <- ggplot(judicial_data_america, aes(x = rigid, y = pright, colo
   ) +
   theme_minimal()
 regression_plot
-```
-I have updated the project to include a formal multiple linear regression analysis. Modeling Political Rights as a function of both Rigidity and Constitution Year reveals two key findings:
-1. Positive Impact of Rigidity: The coefficient for rigidity, 0.1263, suggests that 'locking in' a constitution provides a boost to political rights, acting as a structural shield.
-2.  Negative Impact of Recency: The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments or fail to overcome 'Parchment Barriers' as effectively as older, more established legal frameworks.
-By including both predictors in one model, the analysis shows that while institutional design (rigidity) matters, the historical endurance of the document (year) is a more powerful predictor of democratic outcomes in 1996.
+``` 
 
-The regression shows that while constitutional rigidity has a positive effect on rights, the year of enactment is a predictor, with older constitutions generally supporting higher rights scores. 
-The scatterplot reflects this model by showing that 'Established' constitutions (blue) tend to sit higher on the Y-axis than 'Recent' ones (red), regardless of their rigidity score. This provides a story between the statistical model and the visual data.
+The Model: `pright ~ rigid + cons_yr`
+
+Rigidity Coefficient (0.1263): This is represented by the blue regression line. It shows a positive relationship between constitutional rigidity and political rights. The coefficient for rigidity, 0.1263, suggests that 'locking in' a constitution provides a boost to political rights, acting as a structural shield.
+
+Year Coefficient (-0.0139): This is represented by the color-coded clusters. Because the coefficient is negative, the 'Established' (older) countries sit higher on the Y-axis than the 'Recent' (newer) countries, even when they share the same rigidity score. The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments compared to older, more established legal frameworks.
+
+The visualization shows that while constitutional design (rigidity) provides a slight upward trend in rights, the 'longevity' of the constitution is a major factor. Contrary to my initial hypothesis, the data suggests that older constitutions outperform modern ones in protecting political rights. While constitutional rigidity provides a structural foundation for rights, it is not a substitute for institutional age. In the Americas, the most robust protections for political rights are found where a rigid design is paired with the stability of an established, long-standing constitution.

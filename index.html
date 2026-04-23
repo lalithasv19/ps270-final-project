@@ -1575,7 +1575,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="proposal">Proposal</h2>
 <p>This research is from the Tuck School at Dartmouth, a paper entitled, “Judicial Checks and Balances,” published in 2004.</p>
 <p>Research question I want to know: To what extent does the formal design of a constitution determine the quality of political rights?</p>
-<p>Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people.</p>
+<p>Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights in American countries. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people.</p>
 <p>The explanatory variables are the rigidity of the constitution and the constitution year. For rigidity, this is how it was measured: Measures (on a scale from 1 to 4) how hard it is to change the constitution in a given country. One point each is given if the approval of the majority of the legislature, the chief of state, and a referendum is necessary in order to change the constitution. An additional point is given for each of the following: if a supermajority in the legislature (more than 66 percent of votes) is needed, if both houses of the legislature have to approve, if the legislature has to approve the amendment in two consecutive legislative terms, or if the approval of a majority of the state legislature is required. Source: Maddex (1995).” The other explanatory variable is the year that the constitution was ratified.</p>
 <p>The outcome variable of interest is the political rights index, and this is how it was measured: “Index of political rights in 1996 (on a scale from 1 to 7). Higher ratings indicate countries that come closer to the ideals suggested by the following checklist: (1) there are free and fair elections, (2) those elected rule, (3) there are competitive parties or other competitive political groupings, (4) the opposition has an important role and power, and (5) the entities have self-determination or an extremely high degree of autonomy. Source: Freedom House (1996).”</p>
 <p>Each of the descriptions of the methodology that the researchers used are taken from this website: <a href="https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf" class="uri">https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf</a></p>
@@ -1634,7 +1634,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The data suggests that Constitutional Rigidity is not a “magic bullet” for democracy. In “stable regions” (South America), rigidity appears to act as a shield that protects political rights. In unstable or authoritarian regions (Central America/Caribbean), high rigidity may simply be a rule on paper that fails to protect citizens in practice, or even a tool used by those in power to prevent change.</p>
 <p>Key Observation: The most “rigid” country in the set (Haiti) is far less democratic than countries with “easier to change” constitutions like Panama or Argentina. This suggests that the content of the laws and the culture of the country matter more than just how hard the document is to edit.</p>
 <h2 id="assessing-a-relationship-between-the-year-the-constitution-was-written-its-rigidity-and-political-rights">Assessing a relationship between the year the Constitution was written, its rigidity, and political rights</h2>
-<p>Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution?</p>
+<p>Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution throughout America?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span></code></pre>
@@ -1643,7 +1643,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pright</span> <span class='op'>~</span> <span class='va'>rigid</span> <span class='op'>+</span> <span class='va'>cons_yr</span>, data <span class='op'>=</span> <span class='va'>judicial_data_america</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>model</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = pright ~ rigid + cons_yr, data = judicial_data_america)
+
+Coefficients:
+(Intercept)        rigid      cons_yr  
+    31.6198       0.1263      -0.0139  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -1673,9 +1683,9 @@ For every 1-point increase in the Rigidity of a constitution, the Political Righ
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1980</span>, <span class='st'>"Established (Pre-1980)"</span>, <span class='st'>"Recent (Post-1980)"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>regression_plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>judicial_data_america</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span>, color <span class='op'>=</span> <span class='va'>Age</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_jitter.html'>geom_jitter</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.2</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Jitter stops dots from overlapping</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Adds two simple trend lines</span></span>
+<span><span class='va'>regression_plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>judicial_data_america</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>Age</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
 <span>    title <span class='op'>=</span> <span class='st'>"Rights by Constitutional Rigidity and Age"</span>,</span>
 <span>    x <span class='op'>=</span> <span class='st'>"Rigidity Score"</span>,</span>
@@ -1687,13 +1697,11 @@ For every 1-point increase in the Rigidity of a constitution, the Political Righ
 </div>
 <p><img src="index_files/figure-html5/visualization%202-1.png" alt="" width="624" /></p>
 </div>
-<p>I have updated the project to include a formal multiple linear regression analysis. Modeling Political Rights as a function of both Rigidity and Constitution Year reveals two key findings:
-1. Positive Impact of Rigidity: The coefficient for rigidity, 0.1263, suggests that ‘locking in’ a constitution provides a boost to political rights, acting as a structural shield.
-2. Negative Impact of Recency: The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments or fail to overcome ‘Parchment Barriers’ as effectively as older, more established legal frameworks.
-By including both predictors in one model, the analysis shows that while institutional design (rigidity) matters, the historical endurance of the document (year) is a more powerful predictor of democratic outcomes in 1996.</p>
-<p>The regression shows that while constitutional rigidity has a positive effect on rights, the year of enactment is a predictor, with older constitutions generally supporting higher rights scores.
-The scatterplot reflects this model by showing that ‘Established’ constitutions (blue) tend to sit higher on the Y-axis than ‘Recent’ ones (red), regardless of their rigidity score. This provides a story between the statistical model and the visual data.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>The Model: <code>pright ~ rigid + cons_yr</code></p>
+<p>Rigidity Coefficient (0.1263): This is represented by the blue regression line. It shows a positive relationship between constitutional rigidity and political rights. The coefficient for rigidity, 0.1263, suggests that ‘locking in’ a constitution provides a boost to political rights, acting as a structural shield.</p>
+<p>Year Coefficient (-0.0139): This is represented by the color-coded clusters. Because the coefficient is negative, the ‘Established’ (older) countries sit higher on the Y-axis than the ‘Recent’ (newer) countries, even when they share the same rigidity score. The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments compared to older, more established legal frameworks.</p>
+<p>The visualization shows that while constitutional design (rigidity) provides a slight upward trend in rights, the ‘longevity’ of the constitution is a major factor. Contrary to my initial hypothesis, the data suggests that older constitutions outperform modern ones in protecting political rights. While constitutional rigidity provides a structural foundation for rights, it is not a substitute for institutional age. In the Americas, the most robust protections for political rights are found where a rigid design is paired with the stability of an established, long-standing constitution.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
