@@ -1,44 +1,22 @@
 ---
-title: "PS270 Final Project"
+title: "PS270 Final Project: Constitutional Design and Political Rights"
 author: "Lalitha Viswanathan"
-description: "My final project"
-output:    
-  distill::distill_article: 
+description: "An analysis of how constitutional rigidity and age influence democratic outcomes"
+output:
+  distill::distill_article:
     self_contained: false
 ---
 
-
-
-## Loading in the data
-
-```{r loading}
+```{r setup, include=FALSE}
 library(tidyverse)
 judicial_data <- read_csv("data/data.csv")
 head(judicial_data)
-
 library(forcats) 
 library(ggrepel)
 ```
 
-## Proposal
 
-This research is from the Tuck School at Dartmouth, a paper entitled, "Judicial Checks and Balances," published in 2004. 
-
-Research question I want to know: To what extent does the formal design of a constitution determine the quality of political rights?
-
-Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights in American countries. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people. 
-
-The explanatory variables are the rigidity of the constitution and the constitution year. For rigidity, this is how it was measured: Measures (on a scale from 1 to 4) how hard it is to change the constitution in a given country. One point each is given if the approval of the majority of the legislature, the chief of state, and a referendum is necessary in order to change the constitution. An additional point is given for each of the following: if a supermajority in the legislature (more than 66 percent of votes) is needed, if both houses of the legislature have to approve, if the legislature has to approve the amendment in two consecutive legislative terms, or if the approval of a majority of the state legislature is required. Source: Maddex (1995)." The other explanatory variable is the year that the constitution was ratified. 
-
-The outcome variable of interest is the political rights index, and this is how it was measured: "Index of political rights in 1996 (on a scale from 1 to 7). Higher ratings indicate countries that come closer to the ideals suggested by the following checklist: (1) there are free and fair elections, (2) those elected rule, (3) there are competitive parties or other competitive political groupings, (4) the opposition has an important role and power, and (5) the entities have self-determination or an extremely high degree of autonomy. Source: Freedom House (1996)." 
-
-Each of the descriptions of the methodology that the researchers used are taken from this website: https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf
-
-The observed pattern in the data that would provide support for my hypothesis would be that when the rigidity of the constitution goes up, the political rights index also goes up, meaning that when a constitution is more strictly enforced, political rights are protected. For my other hypothesis, when the constitution is older, the political rights index would go down, meaning that older countries would be less successful in protecting political rights than more modern countries with newer constitutions. 
-
-## Filtering the data to certain regions/continents
-
-```{r americas}
+```{r americas, include=FALSE}
 judicial_data_america <- judicial_data %>% 
   filter(c_amer == 1 | n_amer == 1 | s_amer == 1) %>% 
   mutate(am_region = case_when(
@@ -54,18 +32,33 @@ judicial_data_america <- judicial_data_america %>%
 
 ```
 
-```{r middle east}
-judicial_data_meast <- judicial_data %>% 
-  filter(meast == 1) %>% 
-  mutate(Region = case_when(
-    meast == 1 ~ "Middle East")) %>% 
-  select(-europe, -asia, -africa, -america, -aurasia, -oceania, -c_amer, -s_amer, -n_amer)
-```
+## Introduction
+
+This research explores the relationship between the formal structure of a nation's founding documents and the actual protection of political liberties. Using data from the 2004 Tuck School at Dartmouth paper, "Judicial Checks and Balances," I investigate a central question in institutional design: To what extent does the formal design of a constitution determine the quality of political rights?
+
+Understanding this relationship is vital for emerging democracies. If specific design features, such as constitutional rigidity, can successfully "lock in" democratic gains, then institutional engineering is a powerful tool for progress. I initially hypothesized that a positive relationship exists between constitutional rigidity and political rights. Furthermore, I hypothesized that modern constitutions—informed by contemporary human rights standards—would be more successful at protecting these rights than older documents.
+
+The observed pattern in the data that would provide support for my hypothesis would be that when the rigidity of the constitution goes up, the political rights index also goes up, meaning that when a constitution is more strictly enforced, political rights are protected. For my other hypothesis, when the constitution is older, the political rights index would go down, meaning that older countries would be less successful in protecting political rights than more modern countries with newer constitutions. 
+
+
+## Data Section
+
+The data for this study is cross-sectional, capturing a snapshot of various countries in 1996. The research design focuses on comparing institutions across different American nations at a single point in time to identify correlations between legal rules and political outcomes. This research is from the Tuck School at Dartmouth, a paper entitled, "Judicial Checks and Balances," published in 2004. 
+
+
+Measurement of Variables:
+Outcome Variable: The Political Rights Index (1996), sourced from Freedom House. It is a 1-7 scale measuring fair elections, the role of the opposition, and self-determination.
+Explanatory Variable 1: Rigidity of Constitution, a 1-4 scale measuring the difficulty of amendment (Maddex, 1995).
+Explanatory Variable 2: Constitution Year, representing the year the current document was ratified.
+
+Each of the descriptions of the methodology that the researchers used are taken from this website: https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf
+
+The following plot summarizes the distribution of the outcome variable, Political Rights, across the American countries in the sample.
 
 
 ## Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)
 
-```{r visualization}
+```{r visualization, echo = FALSE}
 visualization <- judicial_data_america %>% 
   ggplot(aes(x = rigid, y = pright, color = countryn)) +
   geom_point() + geom_smooth(method = "lm", se = FALSE, color = "black", size = .75) + 
@@ -99,23 +92,34 @@ Key Observation: The most "rigid" country in the set (Haiti) is far less democra
 Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution throughout America?
 
 
-```{r}
+```{r, include=FALSE}
 library(knitr)
 ```
 
 
-```{r new model}
+```{r new model, include=FALSE}
 model <- lm(pright ~ rigid + cons_yr, data = judicial_data_america)
 model
 summary(model)
+
+library(broom)
+
 ```
+
+```{r, echo = FALSE}
+tidy(model) %>%
+  mutate(across(where(is.numeric), ~round(., 2))) %>%
+  kable(caption = "Multiple Linear Regression: Predicting Political Rights")
+```
+
+
 Since the `rigid` coefficient is positive, it means more rigidity leads to more rights. Since the `cons_yr` coefficient is negative, it means newer constitutions have fewer rights. 
 For every 1-point increase in the Rigidity of a constitution, the Political Rights index increases by 0.1263 points, holding the year constant. It suggests that making a constitution harder to change has a positive (though relatively small) impact on protecting political rights. For every year later a constitution was written, the Political Rights index decreases by 0.0139 points, holding rigidity constant. A constitution written in 1890 is predicted to have about 1.4 points higher political rights than one written in 1990 (100 x 0.0139), even if they have the exact same rigidity score.
 
 This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To include the Year, there are two colors: old vs. new.
 
 
-```{r visualization 2}
+```{r visualization 2, echo = FALSE}
 judicial_data_america <- judicial_data_america %>%
   mutate(Age = ifelse(cons_yr <= 1980, "Established (Pre-1980)", "Recent (Post-1980)"))
 
@@ -139,3 +143,11 @@ Rigidity Coefficient (0.1263): This is represented by the blue regression line. 
 Year Coefficient (-0.0139): This is represented by the color-coded clusters. Because the coefficient is negative, the 'Established' (older) countries sit higher on the Y-axis than the 'Recent' (newer) countries, even when they share the same rigidity score. The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments compared to older, more established legal frameworks.
 
 The visualization shows that while constitutional design (rigidity) provides a slight upward trend in rights, the 'longevity' of the constitution is a major factor. Contrary to my initial hypothesis, the data suggests that older constitutions outperform modern ones in protecting political rights. While constitutional rigidity provides a structural foundation for rights, it is not a substitute for institutional age. In the Americas, the most robust protections for political rights are found where a rigid design is paired with the stability of an established, long-standing constitution.
+
+
+## Conclusion 
+
+This analysis finds mixed support for my initial hypotheses. While constitutional rigidity shows a slight positive correlation with political rights, the effect is secondary to the age of the document. Contrary to my second hypothesis, modern constitutions are associated with lower political rights scores in this 1996 snapshot. This suggests that "modern" language is less important than the institutional stability that comes with an older document.
+
+Limitations and Threats to Inference:
+A significant limitation of this study is omitted variable bias. Factors such as GDP per capita, colonial history, or education levels are likely "confounders" that influence both when a constitution is rewritten and the level of political rights. Furthermore, this study is observational and cross-sectional. Therefore, we cannot interpret these coefficients causally. We cannot say that "waiting 50 years" causes democracy; rather, older constitutions exist in countries that have already achieved a level of stability that allows a constitution to survive. 

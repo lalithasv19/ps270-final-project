@@ -89,29 +89,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>PS270 Final Project</title>
+  <title>PS270 Final Project: Constitutional Design and Political Rights</title>
 
-  <meta property="description" itemprop="description" content="My final project"/>
+  <meta property="description" itemprop="description" content="An analysis of how constitutional rigidity and age influence democratic outcomes"/>
 
 
   <meta name="article:author" content="Lalitha Viswanathan"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="PS270 Final Project"/>
+  <meta property="og:title" content="PS270 Final Project: Constitutional Design and Political Rights"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="My final project"/>
+  <meta property="og:description" content="An analysis of how constitutional rigidity and age influence democratic outcomes"/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="PS270 Final Project"/>
-  <meta property="twitter:description" content="My final project"/>
+  <meta property="twitter:title" content="PS270 Final Project: Constitutional Design and Political Rights"/>
+  <meta property="twitter:description" content="An analysis of how constitutional rigidity and age influence democratic outcomes"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","output"]}},"value":[{"type":"character","attributes":{},"value":["PS270 Final Project"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Lalitha Viswanathan"]}]}]},{"type":"character","attributes":{},"value":["My final project"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","output"]}},"value":[{"type":"character","attributes":{},"value":["PS270 Final Project: Constitutional Design and Political Rights"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Lalitha Viswanathan"]}]}]},{"type":"character","attributes":{},"value":["An analysis of how constitutional rigidity and age influence democratic outcomes"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1519,7 +1519,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"PS270 Final Project","description":"My final project","authors":[{"author":"Lalitha Viswanathan","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}]}
+{"title":"PS270 Final Project: Constitutional Design and Political Rights","description":"An analysis of how constitutional rigidity and age influence democratic outcomes","authors":[{"author":"Lalitha Viswanathan","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1529,11 +1529,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>PS270 Final Project</h1>
+<h1>PS270 Final Project: Constitutional Design and Political Rights</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p>My final project</p>
+<p>An analysis of how constitutional rigidity and age influence democratic outcomes</p>
 </div>
 
 <div class="d-byline">
@@ -1544,88 +1544,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="loading-in-the-data">Loading in the data</h2>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span><span class='va'>judicial_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"data/data.csv"</span><span class='op'>)</span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>judicial_data</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code># A tibble: 6 × 38
-  flopcode flopsobs countryn   country  avelf pright legor_uk legor_fr
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 dza            55 Algeria    ALG     0.294       2        0        1
-2 arg             8 Argentina  ARG     0.177       6        0        1
-3 aus            12 Australia  AUL     0.113       7        1        0
-4 aut            13 Austria    AUS     0.0332      7        0        0
-5 bgd            19 Bangladesh BNG     0           5        1        0
-6 bel            16 Belgium    BEL     0.364       7        0        1
-# ℹ 30 more variables: legor_so &lt;dbl&gt;, legor_ge &lt;dbl&gt;,
-#   legor_sc &lt;dbl&gt;, lat_abst &lt;dbl&gt;, f_prop97 &lt;dbl&gt;, cons_yr &lt;dbl&gt;,
-#   caselaw &lt;dbl&gt;, sc_ten &lt;dbl&gt;, ac_ten &lt;dbl&gt;, f_nocolo &lt;dbl&gt;,
-#   jud_rev &lt;dbl&gt;, P_dem94 &lt;dbl&gt;, lgdp_98 &lt;dbl&gt;, rigid &lt;dbl&gt;,
-#   humana_9 &lt;dbl&gt;, proc_99 &lt;dbl&gt;, index_labor1 &lt;dbl&gt;, gb_per &lt;dbl&gt;,
-#   new_constitutional &lt;dbl&gt;, new_independence &lt;dbl&gt;, europe &lt;dbl&gt;,
-#   asia &lt;dbl&gt;, africa &lt;dbl&gt;, c_amer &lt;dbl&gt;, s_amer &lt;dbl&gt;, …</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://forcats.tidyverse.org/'>forcats</a></span><span class='op'>)</span> </span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggrepel.slowkow.com/'>ggrepel</a></span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<h2 id="proposal">Proposal</h2>
-<p>This research is from the Tuck School at Dartmouth, a paper entitled, “Judicial Checks and Balances,” published in 2004.</p>
-<p>Research question I want to know: To what extent does the formal design of a constitution determine the quality of political rights?</p>
-<p>Hypothesis: I hypothesize that there is a positive relationship between constitutional rigidity and political rights in American countries. Additionally, I hypothesize that modern constitutions would be more successful at protecting political rights with modern language and beliefs in protections for people.</p>
-<p>The explanatory variables are the rigidity of the constitution and the constitution year. For rigidity, this is how it was measured: Measures (on a scale from 1 to 4) how hard it is to change the constitution in a given country. One point each is given if the approval of the majority of the legislature, the chief of state, and a referendum is necessary in order to change the constitution. An additional point is given for each of the following: if a supermajority in the legislature (more than 66 percent of votes) is needed, if both houses of the legislature have to approve, if the legislature has to approve the amendment in two consecutive legislative terms, or if the approval of a majority of the state legislature is required. Source: Maddex (1995).” The other explanatory variable is the year that the constitution was ratified.</p>
-<p>The outcome variable of interest is the political rights index, and this is how it was measured: “Index of political rights in 1996 (on a scale from 1 to 7). Higher ratings indicate countries that come closer to the ideals suggested by the following checklist: (1) there are free and fair elections, (2) those elected rule, (3) there are competitive parties or other competitive political groupings, (4) the opposition has an important role and power, and (5) the entities have self-determination or an extremely high degree of autonomy. Source: Freedom House (1996).”</p>
-<p>Each of the descriptions of the methodology that the researchers used are taken from this website: <a href="https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf" class="uri">https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf</a></p>
+<h2 id="introduction">Introduction</h2>
+<p>This research explores the relationship between the formal structure of a nation’s founding documents and the actual protection of political liberties. Using data from the 2004 Tuck School at Dartmouth paper, “Judicial Checks and Balances,” I investigate a central question in institutional design: To what extent does the formal design of a constitution determine the quality of political rights?</p>
+<p>Understanding this relationship is vital for emerging democracies. If specific design features, such as constitutional rigidity, can successfully “lock in” democratic gains, then institutional engineering is a powerful tool for progress. I initially hypothesized that a positive relationship exists between constitutional rigidity and political rights. Furthermore, I hypothesized that modern constitutions—informed by contemporary human rights standards—would be more successful at protecting these rights than older documents.</p>
 <p>The observed pattern in the data that would provide support for my hypothesis would be that when the rigidity of the constitution goes up, the political rights index also goes up, meaning that when a constitution is more strictly enforced, political rights are protected. For my other hypothesis, when the constitution is older, the political rights index would go down, meaning that older countries would be less successful in protecting political rights than more modern countries with newer constitutions.</p>
-<h2 id="filtering-the-data-to-certain-regionscontinents">Filtering the data to certain regions/continents</h2>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>c_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>n_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>|</span> <span class='va'>s_amer</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>am_region <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>c_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Central America"</span>, </span>
-<span>    <span class='va'>n_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"North America"</span>, </span>
-<span>    <span class='va'>s_amer</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"South America"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>europe</span>, <span class='op'>-</span><span class='va'>asia</span>, <span class='op'>-</span><span class='va'>africa</span>, <span class='op'>-</span><span class='va'>meast</span>, <span class='op'>-</span><span class='va'>america</span>, <span class='op'>-</span><span class='va'>aurasia</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>am_region</span>, <span class='va'>countryn</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>countryn <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_inorder.html'>fct_inorder</a></span><span class='op'>(</span><span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> </span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_meast</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>meast</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Region <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>meast</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Middle East"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>europe</span>, <span class='op'>-</span><span class='va'>asia</span>, <span class='op'>-</span><span class='va'>africa</span>, <span class='op'>-</span><span class='va'>america</span>, <span class='op'>-</span><span class='va'>aurasia</span>, <span class='op'>-</span><span class='va'>oceania</span>, <span class='op'>-</span><span class='va'>c_amer</span>, <span class='op'>-</span><span class='va'>s_amer</span>, <span class='op'>-</span><span class='va'>n_amer</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
+<h2 id="data-section">Data Section</h2>
+<p>The data for this study is cross-sectional, capturing a snapshot of various countries in 1996. The research design focuses on comparing institutions across different American nations at a single point in time to identify correlations between legal rules and political outcomes. This research is from the Tuck School at Dartmouth, a paper entitled, “Judicial Checks and Balances,” published in 2004.</p>
+<p>Measurement of Variables:
+Outcome Variable: The Political Rights Index (1996), sourced from Freedom House. It is a 1-7 scale measuring fair elections, the role of the opposition, and self-determination.
+Explanatory Variable 1: Rigidity of Constitution, a 1-4 scale measuring the difficulty of amendment (Maddex, 1995).
+Explanatory Variable 2: Constitution Year, representing the year the current document was ratified.</p>
+<p>Each of the descriptions of the methodology that the researchers used are taken from this website: <a href="https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf" class="uri">https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf</a></p>
+<p>The following plot summarizes the distribution of the outcome variable, Political Rights, across the American countries in the sample.</p>
 <h2 id="visualization-displaying-the-political-rights-index-of-countries-throughout-the-americas-separated-by-region-north-central-south">Visualization displaying the Political Rights Index of countries throughout the Americas, separated by region (North, Central, South)</h2>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>visualization</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span>, color <span class='op'>=</span> <span class='va'>countryn</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"black"</span>, size <span class='op'>=</span> <span class='fl'>.75</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggrepel.slowkow.com/reference/geom_text_repel.html'>geom_text_repel</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>countryn</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>3</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span>, color <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>am_region</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x <span class='op'>=</span> <span class='st'>"Rigidity of Constitution"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Index of political rights in 1996"</span>, </span>
-<span>    title <span class='op'>=</span> <span class='st'>"Political Rights Index and Relationship to Rigidity of\nConstitutions in American Countries (1996)"</span>,</span>
-<span>    subtitle <span class='op'>=</span> <span class='st'>"Higher ratings for rigidity of consitution indicate its more difficult to change\nHigher ratings of political rights indicate countries come closer to ideals"</span>,</span>
-<span>    color <span class='op'>=</span> <span class='st'>"Country Name"</span>, </span>
-<span>    caption <span class='op'>=</span> <span class='st'>"Rigidity Source: Maddex (1995); Political Rights Source: Freedom House (1996)"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_color_viridis_d</a></span><span class='op'>(</span>option <span class='op'>=</span> <span class='st'>"plasma"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>visualization</span></span></code></pre>
-</div>
 <p><img src="index_files/figure-html5/visualization-1.png" alt="" width="624" /></p>
 </div>
 <p>This visualization shows that in South America, there is a clear positive correlation (upward-sloping line). Countries like Chile and Ecuador, which have more rigid constitutions (closer to 3.0), also enjoy higher levels of political rights. This supports the theory that making a constitution difficult to change can help “lock in” democratic protections and prevent sudden authoritarian overthrows.</p>
@@ -1636,72 +1568,57 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="assessing-a-relationship-between-the-year-the-constitution-was-written-its-rigidity-and-political-rights">Assessing a relationship between the year the Constitution was written, its rigidity, and political rights</h2>
 <p>Guiding Question: Does the effectiveness of constitutional rigidity in protecting political rights depend on the age of the constitution throughout America?</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>pright</span> <span class='op'>~</span> <span class='va'>rigid</span> <span class='op'>+</span> <span class='va'>cons_yr</span>, data <span class='op'>=</span> <span class='va'>judicial_data_america</span><span class='op'>)</span></span>
-<span><span class='va'>model</span></span></code></pre>
-</div>
-<pre><code>
-Call:
-lm(formula = pright ~ rigid + cons_yr, data = judicial_data_america)
-
-Coefficients:
-(Intercept)        rigid      cons_yr  
-    31.6198       0.1263      -0.0139  </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>
-Call:
-lm(formula = pright ~ rigid + cons_yr, data = judicial_data_america)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.4130 -0.7184 -0.1222  1.2242  1.7538 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) 31.619804  13.415595   2.357   0.0363 *
-rigid        0.126325   0.655248   0.193   0.8503  
-cons_yr     -0.013896   0.006685  -2.079   0.0598 .
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 1.546 on 12 degrees of freedom
-Multiple R-squared:  0.2785,    Adjusted R-squared:  0.1583 
-F-statistic: 2.316 on 2 and 12 DF,  p-value: 0.141</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 1: </span>Multiple Linear Regression: Predicting Political Rights</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">31.62</td>
+<td style="text-align: right;">13.42</td>
+<td style="text-align: right;">2.36</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rigid</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cons_yr</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">-2.08</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>Since the <code>rigid</code> coefficient is positive, it means more rigidity leads to more rights. Since the <code>cons_yr</code> coefficient is negative, it means newer constitutions have fewer rights.
 For every 1-point increase in the Rigidity of a constitution, the Political Rights index increases by 0.1263 points, holding the year constant. It suggests that making a constitution harder to change has a positive (though relatively small) impact on protecting political rights. For every year later a constitution was written, the Political Rights index decreases by 0.0139 points, holding rigidity constant. A constitution written in 1890 is predicted to have about 1.4 points higher political rights than one written in 1990 (100 x 0.0139), even if they have the exact same rigidity score.</p>
 <p>This graph shows Rigidity on the X-axis and Political Rights on the Y-axis. To include the Year, there are two colors: old vs. new.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>judicial_data_america</span> <span class='op'>&lt;-</span> <span class='va'>judicial_data_america</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>cons_yr</span> <span class='op'>&lt;=</span> <span class='fl'>1980</span>, <span class='st'>"Established (Pre-1980)"</span>, <span class='st'>"Recent (Post-1980)"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>regression_plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>judicial_data_america</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rigid</span>, y <span class='op'>=</span> <span class='va'>pright</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>Age</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    title <span class='op'>=</span> <span class='st'>"Rights by Constitutional Rigidity and Age"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Rigidity Score"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Political Rights Index"</span>,</span>
-<span>    color <span class='op'>=</span> <span class='st'>"Constitutional Era"</span></span>
-<span>  <span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span><span class='va'>regression_plot</span></span></code></pre>
-</div>
 <p><img src="index_files/figure-html5/visualization%202-1.png" alt="" width="624" /></p>
 </div>
 <p>The Model: <code>pright ~ rigid + cons_yr</code></p>
 <p>Rigidity Coefficient (0.1263): This is represented by the blue regression line. It shows a positive relationship between constitutional rigidity and political rights. The coefficient for rigidity, 0.1263, suggests that ‘locking in’ a constitution provides a boost to political rights, acting as a structural shield.</p>
 <p>Year Coefficient (-0.0139): This is represented by the color-coded clusters. Because the coefficient is negative, the ‘Established’ (older) countries sit higher on the Y-axis than the ‘Recent’ (newer) countries, even when they share the same rigidity score. The coefficient for the year of enactment, -0.0139, indicates that newer constitutions are associated with lower political rights scores, suggesting that recent constitutional rewrites often occur in unstable environments compared to older, more established legal frameworks.</p>
 <p>The visualization shows that while constitutional design (rigidity) provides a slight upward trend in rights, the ‘longevity’ of the constitution is a major factor. Contrary to my initial hypothesis, the data suggests that older constitutions outperform modern ones in protecting political rights. While constitutional rigidity provides a structural foundation for rights, it is not a substitute for institutional age. In the Americas, the most robust protections for political rights are found where a rigid design is paired with the stability of an established, long-standing constitution.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>This analysis finds mixed support for my initial hypotheses. While constitutional rigidity shows a slight positive correlation with political rights, the effect is secondary to the age of the document. Contrary to my second hypothesis, modern constitutions are associated with lower political rights scores in this 1996 snapshot. This suggests that “modern” language is less important than the institutional stability that comes with an older document.</p>
+<p>Limitations and Threats to Inference:
+A significant limitation of this study is omitted variable bias. Factors such as GDP per capita, colonial history, or education levels are likely “confounders” that influence both when a constitution is rewritten and the level of political rights. Furthermore, this study is observational and cross-sectional. Therefore, we cannot interpret these coefficients causally. We cannot say that “waiting 50 years” causes democracy; rather, older constitutions exist in countries that have already achieved a level of stability that allows a constitution to survive.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
