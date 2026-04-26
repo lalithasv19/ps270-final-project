@@ -51,7 +51,7 @@ Outcome Variable: The Political Rights Index (1996), sourced from Freedom House.
 Explanatory Variable 1: Rigidity of Constitution, a 1-4 scale measuring the difficulty of amendment (Maddex, 1995).
 Explanatory Variable 2: Constitution Year, representing the year the current document was ratified.
 
-Each of the descriptions of the methodology that the researchers used are taken from this website: https://faculty.tuck.dartmouth.edu/images/uploads/faculty/rafael-laporta/jcb_variable_description.pdf
+Each of the descriptions of the methodology that the researchers used are taken from this website: https://doi.org/10.1086/381480 
 
 The following plot summarizes the distribution of the outcome variable, Political Rights, across the American countries in the sample.
 
