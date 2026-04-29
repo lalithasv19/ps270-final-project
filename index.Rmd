@@ -144,7 +144,7 @@ Year Coefficient (-0.0139): This is represented by the color-coded clusters. Bec
 
 The visualization shows that while constitutional design (rigidity) provides a slight upward trend in rights, the 'longevity' of the constitution is a major factor. Contrary to my initial hypothesis, the data suggests that older constitutions outperform modern ones in protecting political rights. While constitutional rigidity provides a structural foundation for rights, it is not a substitute for institutional age. In the Americas, the most robust protections for political rights are found where a rigid design is paired with the stability of an established, long-standing constitution.
 
-The model attempted to predict political rights based on constitutional rigidity and the year of the constitution was not statistically significant if alpha = 0.05. While there is a slight suggestion that older constitutions are associated with higher political rights (p = 0.06), constitutional rigidity had no detectable impact on the outcome. Furthermore, the small sample size limits the power of this analysis. 
+The model attempted to predict political rights based on constitutional rigidity and the year of the constitution was not statistically significant if alpha = 0.05, as p = 0.141. While there is a slight suggestion that older constitutions are associated with higher political rights (p = 0.06), constitutional rigidity had no detectable impact on the outcome (p = .85). Furthermore, the small sample size limits the power of this analysis. 
 
 ## Conclusion 
 
