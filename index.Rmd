@@ -146,6 +146,7 @@ The visualization shows that while constitutional design (rigidity) provides a s
 
 The model attempted to predict political rights based on constitutional rigidity and the year of the constitution was not statistically significant if alpha = 0.05, as p = 0.141. While there is a slight suggestion that older constitutions are associated with higher political rights (p = 0.06), constitutional rigidity had no detectable impact on the outcome (p = .85). Furthermore, the small sample size limits the power of this analysis. 
 
+
 ## Conclusion 
 
 This analysis finds mixed support for my initial hypotheses. While constitutional rigidity shows a slight positive correlation with political rights, the effect is secondary to the age of the document. Contrary to my second hypothesis, modern constitutions are associated with lower political rights scores in this 1996 snapshot. This suggests that "modern" language is less important than the institutional stability that comes with an older document.
